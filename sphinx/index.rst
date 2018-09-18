@@ -5,12 +5,15 @@
 
 Network Inference's documentation
 =============================================
+The aim of this project is ...
+
 
 .. toctree::
    :maxdepth: 2
 
    :caption: Contents:
 
+   summary
    code
 
 
