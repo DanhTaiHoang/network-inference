@@ -5,10 +5,13 @@
 
 Network Inference's documentation
 =============================================
+We use a kinetic model
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+        Model
+        Method
         comparison 
 
 
