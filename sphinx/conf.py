@@ -97,10 +97,16 @@ html_theme_path = ['theme']
 #
 # html_theme_options = {}
 
+#html_theme_options = {
+#    'rootlinks':
+#    (("https://www.niddk.nih.gov/research-funding/at-niddk/labs-branches/LBM",
+#      "LBM"))
+#}
+
 html_theme_options = {
     'rootlinks':
     (("https://www.niddk.nih.gov/research-funding/at-niddk/labs-branches/LBM",
-      "LBM"))
+      "LBM"), ("https://github.com/nihcompmed", "NIHCOMPMED"))
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
