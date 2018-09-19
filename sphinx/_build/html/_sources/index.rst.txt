@@ -3,23 +3,16 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Network Inference's documentation
-=============================================
-The aim of this project is ...
+.. include:: ../README.rst
 
-
+Table of Contents
+-----------------------
 .. toctree::
    :maxdepth: 2
-
-   :caption: Contents:
-
+   
+   model
+   method
+   result    
+   plot
    summary
-   code
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
