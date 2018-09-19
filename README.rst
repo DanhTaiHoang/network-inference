@@ -9,7 +9,8 @@ The project was designed to develop a data-driven approach for network inference
 Interactive notebook
 -----------------------------
 Use Binder to run our codes online 
-.. image:: https://mybinder.org/badge.svg :target: https://mybinder.org/v2/gh/danhtaihoang/network-inference/master
+.. image:: https://mybinder.org/badge.svg 
+   :target: https://mybinder.org/v2/gh/danhtaihoang/network-inference/master
 
 Links
 ----------------------------
