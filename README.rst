@@ -12,6 +12,10 @@ Use Binder to run our codes online
 .. image:: https://mybinder.org/badge.svg 
   :target: https://mybinder.org/v2/gh/danhtaihoang/network-inference/master
 
+
+.. image:: https://mybinder.org/badge.svg
+   :target: https://mybinder.org/v2/gh/nihcompmed/fem/master?filepath=doc%2Fnotebooks
+
 Links
 ----------------------------
 Code Documentation
