@@ -11,10 +11,9 @@ Table of Contents
    :maxdepth: 2
    
    model
-   method
-   result    
+   method  
    othermethod
    comparison
    higherorder 
-   summary
+   conclusion
 

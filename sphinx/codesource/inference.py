@@ -181,8 +181,6 @@ output: interaction w
 """
 def emf(s,nloop,stop_criterion):
     n = s.shape[1]
-
-    print(stop_criterion)
     
     # nMF part: ---------------------------------------------------    
     m = np.mean(s,axis=0)
@@ -225,9 +223,11 @@ def emf(s,nloop,stop_criterion):
             a, err = quad(fun2, -np.inf, np.inf)
             a = float(a)
     
+            if a==0: a = 10**(-8)
+
             delta = (1/(a**2))* np.sum((B[i0,:]**2) * (1-m[:]**2))
-    
             W_temp = B[i0,:]/a
+
             H_temp = np.dot(s[:-1,:], W_temp)
             cost[iloop] = np.mean((s1[:,i0] - np.tanh(H_temp))**2)
     

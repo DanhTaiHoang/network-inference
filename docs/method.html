@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Method &mdash; Network Inference 0.0.1 documentation</title>
+    <title>&lt;no title&gt; &mdash; Network Inference 0.0.1 documentation</title>
     
     <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
@@ -28,7 +28,7 @@
     <link rel="index" title="Index" href="genindex.html" >
     <link rel="search" title="Search" href="search.html" >
     <link rel="top" title="Network Inference 0.0.1 documentation" href="index.html" >
-    <link rel="next" title="Result" href="result.html" >
+    <link rel="next" title="Method: Free Energy Minimization" href="codesource/fem.html" >
     <link rel="prev" title="Model" href="model.html" > 
   </head>
   <body>
@@ -61,11 +61,7 @@
            accesskey="I">index</a>
       </li>
       <li class="active">
-        <a href="py-modindex.html" title="Python Module Index"
-           >modules</a>
-      </li>
-      <li class="active">
-        <a href="result.html" title="Result"
+        <a href="codesource/fem.html" title="Method: Free Energy Minimization"
            accesskey="N">next</a>
       </li>
       <li class="active">
@@ -86,8 +82,8 @@
   <p class="topless"><a href="model.html"
                         title="previous chapter">Model</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="result.html"
-                        title="next chapter">Result</a></p>
+  <p class="topless"><a href="codesource/fem.html"
+                        title="next chapter">Method: Free Energy Minimization</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -107,33 +103,10 @@
         <div class="bodywrapper">
           <div class="body" id="spc-section-body">
             
-  <div class="section" id="method">
-<h1>Method<a class="headerlink" href="#method" title="Permalink to this headline">¶</a></h1>
-<div class="line-block">
-<div class="line">A detail description of our method, namely Free Energy Minimization
-(FEM), can be found in our paper (Ref). Briefly, we define a free
-energy of data, and show that minimizing this free energy leads to
-an effective estimation of interactions. The algorithm of our method
-contains the following steps:</div>
-<div class="line">(i) Initialize <span class="math notranslate nohighlight">\(W_{ij}\)</span> at random;</div>
-<div class="line">(ii) Compute local field <span class="math notranslate nohighlight">\(H_i(t) = \sum_j W_{ij} \sigma_j (t)\)</span>;</div>
-<div class="line">(iii) Compute data energy
-<span class="math notranslate nohighlight">\(E_i(t) =  \frac{\sigma_i(t+1)}{\langle  \sigma(t+1) \rangle_{\text{model}}}  H_i(t),\)</span>
-where <span class="math notranslate nohighlight">\(\langle  \sigma(t+1) \rangle_{\text{model}}\)</span> represents
-model expectation;</div>
-<div class="line">(iv) Extract coupling
-<span class="math notranslate nohighlight">\(W_{ij}^\text{new}= \sum_k \langle \delta E_i \delta \sigma_k  \rangle [C^{-1}]_{kj},\)</span>
-where <span class="math notranslate nohighlight">\(\langle \cdot \rangle\)</span> represents sample mean,
-<span class="math notranslate nohighlight">\(\delta f \equiv f -\langle f\rangle\)</span> and
-<span class="math notranslate nohighlight">\(C_{jk} \equiv \langle \delta\sigma_j\delta\sigma_k\rangle;\)</span></div>
-<div class="line">(v) Repeat (ii)-(iv) until the discrepancy between observed
-<span class="math notranslate nohighlight">\(\sigma_i(t+1)\)</span> and model expectation
-<span class="math notranslate nohighlight">\(\langle  \sigma(t+1)  \rangle_{\text{model}}\)</span>,
-<span class="math notranslate nohighlight">\(D_i(W)\equiv\sum_{t} \big[ \sigma_i(t+1) - \langle \sigma_i(t+1) \rangle_{\text{model}} \big]^2\)</span>
-starts to increase;</div>
-<div class="line">(vi) Compute (ii)-(iv) in parallel for every variable index
-<span class="math notranslate nohighlight">\(i \in \{1, 2, \cdots, N\}\)</span>.</div>
-</div>
+  <div class="toctree-wrapper compound" id="method">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="codesource/fem.html">Method: Free Energy Minimization</a></li>
+</ul>
 </div>
 
 

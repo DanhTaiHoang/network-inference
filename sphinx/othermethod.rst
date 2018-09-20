@@ -2,22 +2,14 @@
 
 Other methods
 -----------------------
+.. toctree::
+    :maxdepth: 2
+    :glob:
 
-Naive mean field
-==============================
-
-
-Thouless-Anderson-Palmer mean field
-=================================================
-
-
-Exact mean field
-=================================================
-
-
-Maximum Likelihood Estimation
-=================================================
-
+    codesource/nmf.ipynb
+    codesource/tap.ipynb
+    codesource/emf.ipynb
+    codesource/mle.ipynb
 
 
 
