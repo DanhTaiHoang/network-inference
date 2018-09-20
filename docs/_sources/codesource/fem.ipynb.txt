@@ -14,7 +14,7 @@
     "\n",
     "(iii) Compute data energy $$E_i(t) =  {{\\sigma_i(t+1)} \\over {\\langle  \\sigma(t+1) \\rangle_{\\text{model}}}}  H_i(t), $$ where $\\langle  \\sigma(t+1) \\rangle_{\\text{model}}$ represents model expectation;\n",
     "\n",
-    "(iv) Extract coupling $W_{ij}^\\text{new}= \\sum_k \\langle \\delta E_i \\delta \\sigma_k  \\rangle [C^{-1}]_{kj},$ where  $\\langle \\cdot \\rangle$ represents sample mean,  $\\delta f \\equiv f -\\langle f\\rangle$ and $C_{jk} \\equiv \\langle \\delta\\sigma_j\\delta\\sigma_k\\rangle;$\n",
+    "(iv) Extract coupling $W_{ij}^\\text{new}= \\sum_k \\langle \\delta E_i \\delta \\sigma_k  \\rangle [C^{-1}]_{kj}$, where  $\\langle \\cdot \\rangle$ represents sample mean,  $\\delta f \\equiv f -\\langle f\\rangle$ and $C_{jk} \\equiv \\langle \\delta\\sigma_j\\delta\\sigma_k\\rangle$;\n",
     "\n",
     "(v) Repeat (ii)-(iv) until the discrepancy between observed $\\sigma_i(t+1)$ and model expectation \n",
     "$\\langle  \\sigma(t+1) \\rangle_{\\text{model}}$, $D_i(W) = \\sum_{t} \\big[ \\sigma_i(t+1) - \\langle \\sigma_i(t+1) \\rangle_{\\text{model}} \\big]^2$  starts to increase;\n",
@@ -46,9 +46,9 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "The actual couplings `W0` and configurations of binary variables are generated from our function `simulate.simulate_data`. The couplings are normally distributed with zero mean and variance equal to $g^2/N$ which is known as Sherrington-Kirkpatrick model.\n",
+    "The couplings are normally distributed with zero mean and variance equal to $g^2/N$ which is known as Sherrington-Kirkpatrick model.\n",
     "\n",
-    "As a first axample, we consider a system of $N = 100$ variables, coupling variance parameter $g = 2.0$"
+    "As a first axample, we consider a system of $N = 100$ variables, and coupling variance parameter $g = 2.0$"
    ]
   },
   {
@@ -68,7 +68,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "Heat map of the actual coupling matrix `W0` is as the following:"
+    "The heat map of the actual coupling matrix `W0` is plotted:"
    ]
   },
   {
@@ -102,7 +102,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "We then generate time series of variables according to the kinetic ising model. The data length $L = 1000$ is used."
+    "By using function `simulate.simulate_data`, we then generate time series of variable states according to the kinetic ising model. The data length $L = 2000$ is used."
    ]
   },
   {
@@ -160,7 +160,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "niter = 300\n",
+    "niter = 100\n",
     "w = inference.fem(s,niter)"
    ]
   },
@@ -225,7 +225,7 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "('MSE:', 0.0022216780994965594)\n"
+      "('MSE:', 0.002221677270686371)\n"
      ]
     }
    ],
