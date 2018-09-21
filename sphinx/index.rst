@@ -13,7 +13,7 @@ Table of Contents
    model
    method  
    othermethod
-   comparison
+   codesource/comparison.ipynb
    higherorder 
    conclusion
 
