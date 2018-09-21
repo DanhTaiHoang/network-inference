@@ -1,10 +1,10 @@
-Summary
+Conclusion
 =============================================
 Summary of project
 
 Section 1
 ------------
-In this section, we ....
+We conclude that  ...
 
 
 Section 1.1

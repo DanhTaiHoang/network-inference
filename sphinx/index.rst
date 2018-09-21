@@ -11,8 +11,9 @@ Table of Contents
    :maxdepth: 2
    
    model
-   method
-   result    
-   plot
-   summary
+   method  
+   othermethod
+   codesource/comparison.ipynb
+   higherorder 
+   conclusion
 
