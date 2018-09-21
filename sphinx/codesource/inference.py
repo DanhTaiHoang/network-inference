@@ -68,6 +68,11 @@ def mle(s,nloop,rate,stop_criterion):
                        
             if ((stop_criterion=='yes') and (cost[iloop] >= cost[iloop-1])):
                 break              
+                        
+            #mse = ((w01-w)**2).mean()
+            #slope = (w01*w).sum()/(w01**2).sum()
+            #if (iloop % 100) ==0: 
+            #    print(iloop,mse,slope)
         
         W[i0,:] = w
     
