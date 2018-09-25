@@ -6,7 +6,9 @@
    "source": [
     "# Maximum Likelihood Estimation \n",
     "\n",
-    "Maximum likelihood estimation (MLE) is a standard method in the field of network inference. It is known that \n"
+    "[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/danhtaihoang/network-inference/blob/master/sphinx/codesource/mle.ipynb/master)\n",
+    "\n",
+    "Maximum likelihood estimation (MLE) is a standard method in the field of network inference."
    ]
   },
   {

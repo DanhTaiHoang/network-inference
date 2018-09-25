@@ -273,6 +273,7 @@ div.nboutput div.output_area.stderr {
 </style>
 <div class="section" id="Method:-Free-Energy-Minimization">
 <h1>Method: Free Energy Minimization<a class="headerlink" href="#Method:-Free-Energy-Minimization" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/danhtaihoang/network-inference/blob/master/sphinx/codesource/fem.ipynb/master"><img alt="Binder" src="https://mybinder.org/badge.svg" /></a></p>
 <p>A detail description of this method can be found in our paper (Ref).
 Briefly, we defined a free energy of data, and showed that minimizing
 this free energy leads to an effective estimation of interactions. The
@@ -330,8 +331,10 @@ of small sample sizes and large coupling variance.</p>
 <p>The couplings are normally distributed with zero mean and standard
 deviation equal to <span class="math notranslate nohighlight">\(g/\sqrt N\)</span> which is known as
 Sherrington-Kirkpatrick model.</p>
-<p>As a first axample, we consider a system of <span class="math notranslate nohighlight">\(N = 100\)</span> variables,
-and coupling variance parameter <span class="math notranslate nohighlight">\(g = 2.0\)</span></p>
+<div class="section" id="Small-coupling-variability">
+<h2>Small coupling variability<a class="headerlink" href="#Small-coupling-variability" title="Permalink to this headline">¶</a></h2>
+<p>We start by considering a system of <span class="math notranslate nohighlight">\(N = 100\)</span> variables, and
+coupling variance parameter <span class="math notranslate nohighlight">\(g = 2.0\)</span></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [2]:
@@ -485,6 +488,9 @@ couplings and inferred couplings: MSE =
 (&#39;MSE:&#39;, 0.002227111736127038)
 </pre></div></div>
 </div>
+</div>
+<div class="section" id="Large-coupling-variability">
+<h2>Large coupling variability<a class="headerlink" href="#Large-coupling-variability" title="Permalink to this headline">¶</a></h2>
 <p>Now, let us consider a difficult regime (large coupling variability),
 <span class="math notranslate nohighlight">\(g = 4\)</span> for instance.</p>
 <div class="nbinput nblast docutils container">
@@ -572,6 +578,7 @@ couplings <code class="docutils literal notranslate"><span class="pre">w0</span>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
