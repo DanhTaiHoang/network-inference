@@ -274,10 +274,13 @@ div.nboutput div.output_area.stderr {
 <div class="section" id="Naive-Mean-Field-approximation">
 <h1>Naive Mean-Field approximation<a class="headerlink" href="#Naive-Mean-Field-approximation" title="Permalink to this headline">¶</a></h1>
 <p>In this section, we show the performance of Naive Mean-Field
-approximation (nMF) in inferring couplings <span class="math notranslate nohighlight">\(W_{ij}\)</span>. We will see
-that nMF method can produce a good result prediction in the regimes of
-large sample sizes and small coupling variance.</p>
-<p>Similary, we import the packages to the notebook:</p>
+approximation (nMF) to infer couplings <span class="math notranslate nohighlight">\(W_{ij}\)</span> from
+configurations <code class="docutils literal notranslate"><span class="pre">s</span></code>. We will see that nMF method can produce good
+inference results only in the regimes of large sample sizes and small
+coupling variability. This method produces bad results in the limit of
+small sample sizes or large coupling variability.</p>
+<p>To start using our jupyter notebook, we first import the nescessary
+packages.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [1]:
@@ -295,8 +298,8 @@ large sample sizes and small coupling variance.</p>
 </pre></div>
 </div>
 </div>
-<p>We first consider a system of <span class="math notranslate nohighlight">\(N = 100\)</span> variables, coupling
-variance parameter <span class="math notranslate nohighlight">\(g = 2.0\)</span></p>
+<p>We first use the same parameters as the first example in FEM section
+above: <span class="math notranslate nohighlight">\(N = 100\)</span>, <span class="math notranslate nohighlight">\(g = 2.0\)</span>, and <span class="math notranslate nohighlight">\(L=2000\)</span>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [2]:
@@ -304,29 +307,20 @@ variance parameter <span class="math notranslate nohighlight">\(g = 2.0\)</span>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># parameter setting:</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>    <span class="c1"># number of variables</span>
-<span class="n">g</span> <span class="o">=</span> <span class="mf">2.0</span>    <span class="c1"># coupling variance</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">2.0</span>
 <span class="n">w0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">g</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<p>Data length <span class="math notranslate nohighlight">\(L=2000\)</span> is used as the first test.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [3]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">l</span> <span class="o">=</span> <span class="mi">2000</span>
+
+<span class="n">l</span> <span class="o">=</span> <span class="mi">2000</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">simulate</span><span class="o">.</span><span class="n">generate_data</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<p>We apply nMF method to recover the coupling matrix from variable
-configurations.</p>
+<p>Now, we apply nMF method to recover the coupling matrix <code class="docutils literal notranslate"><span class="pre">w</span></code> from
+variable configurations <code class="docutils literal notranslate"><span class="pre">s</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [4]:
+<span></span>In [3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
@@ -334,11 +328,11 @@ configurations.</p>
 </pre></div>
 </div>
 </div>
-<p>We plot the heat map of predicted coupling matrix <code class="docutils literal notranslate"><span class="pre">W</span></code> and compare with
-the actual couplings <code class="docutils literal notranslate"><span class="pre">W0</span></code>:</p>
+<p>We plot the heat map of inferred coupling matrix <code class="docutils literal notranslate"><span class="pre">w</span></code> and compare with
+the actual couplings <code class="docutils literal notranslate"><span class="pre">w0</span></code>:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [5]:
+<span></span>In [4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
@@ -364,8 +358,8 @@ the actual couplings <code class="docutils literal notranslate"><span class="pre
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;predicted couplings vs. actual couplings&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$w0$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$w$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;actual couplings&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;inferred couplings&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">h_pad</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">w_pad</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -376,14 +370,14 @@ the actual couplings <code class="docutils literal notranslate"><span class="pre
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/codesource_nmf_9_0.png" src="../_images/codesource_nmf_9_0.png" />
+<img alt="../_images/codesource_nmf_7_0.png" src="../_images/codesource_nmf_7_0.png" />
 </div>
 </div>
-<p>The mean square error between actual couplings and predicted couplings
-is calculated:</p>
+<p>The mean square error (MSE) between actual couplings and inferred
+couplings is calculated:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [6]:
+<span></span>In [5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
@@ -400,18 +394,28 @@ is calculated:</p>
 (&#39;MSE:&#39;, 0.016432507950391948)
 </pre></div></div>
 </div>
-<p>Now, if we use a very larger sample size, <span class="math notranslate nohighlight">\(L=100000\)</span> for instance.</p>
-<div class="nbinput docutils container">
+<p>The inference result is very poor.</p>
+<p>Now, if we use a much larger sample size, <span class="math notranslate nohighlight">\(L=100000\)</span> for instance.</p>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [7]:
+<span></span>In [6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">l</span> <span class="o">=</span> <span class="mi">100000</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">simulate</span><span class="o">.</span><span class="n">generate_data</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">nmf</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mf">3.2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<p>The inference result is shown below:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mf">3.2</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;actual coupling matrix&#39;</span><span class="p">)</span>
@@ -433,8 +437,8 @@ is calculated:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;predicted couplings vs. actual couplings&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$w0$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$w$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;actual couplings&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;inferred couplings&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">h_pad</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">w_pad</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -467,9 +471,11 @@ is calculated:</p>
 (&#39;MSE:&#39;, 0.016114338928562788)
 </pre></div></div>
 </div>
-<p>Now, let us consider small coupling variance, <span class="math notranslate nohighlight">\(g = 0.5\)</span> for
-instance. Data length <span class="math notranslate nohighlight">\(L=2000\)</span>.</p>
-<div class="nbinput docutils container">
+<p>The result shows that nMF produces bad prediction results in the limit
+of large coupling variability, even for large sample sizes.</p>
+<p>Now, let us consider a very small coupling variability, <span class="math notranslate nohighlight">\(g = 0.5\)</span>
+for instance.</p>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [9]:
 </pre></div>
@@ -477,12 +483,29 @@ instance. Data length <span class="math notranslate nohighlight">\(L=2000\)</spa
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">g</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="n">w0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">g</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
-
-<span class="n">l</span> <span class="o">=</span> <span class="mi">2000</span>
+</pre></div>
+</div>
+</div>
+<p>Data length <span class="math notranslate nohighlight">\(L=2000\)</span> is used for our first example.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">l</span> <span class="o">=</span> <span class="mi">2000</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">simulate</span><span class="o">.</span><span class="n">generate_data</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">nmf</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mf">3.2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mf">3.2</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;actual coupling matrix&#39;</span><span class="p">)</span>
@@ -504,8 +527,8 @@ instance. Data length <span class="math notranslate nohighlight">\(L=2000\)</spa
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;predicted couplings vs. actual couplings&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$w0$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$w$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;actual couplings&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;inferred couplings&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">h_pad</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">w_pad</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -516,12 +539,12 @@ instance. Data length <span class="math notranslate nohighlight">\(L=2000\)</spa
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/codesource_nmf_16_0.png" src="../_images/codesource_nmf_16_0.png" />
+<img alt="../_images/codesource_nmf_19_0.png" src="../_images/codesource_nmf_19_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [10]:
+<span></span>In [12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
@@ -538,18 +561,27 @@ instance. Data length <span class="math notranslate nohighlight">\(L=2000\)</spa
 (&#39;MSE:&#39;, 0.0005299059905942844)
 </pre></div></div>
 </div>
-<p>For very larger data length <span class="math notranslate nohighlight">\(L=100000\)</span>.</p>
-<div class="nbinput docutils container">
+<p>Now, let us see if the inference result can be improved with larger data
+length, <span class="math notranslate nohighlight">\(L=100000\)</span> for instance.</p>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [11]:
+<span></span>In [13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">l</span> <span class="o">=</span> <span class="mi">100000</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">simulate</span><span class="o">.</span><span class="n">generate_data</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">nmf</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mf">3.2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mf">3.2</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;actual coupling matrix&#39;</span><span class="p">)</span>
@@ -571,8 +603,8 @@ instance. Data length <span class="math notranslate nohighlight">\(L=2000\)</spa
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;predicted couplings vs. actual couplings&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$w0$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$w$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;actual couplings&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;inferred couplings&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">h_pad</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">w_pad</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -583,11 +615,30 @@ instance. Data length <span class="math notranslate nohighlight">\(L=2000\)</spa
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/codesource_nmf_19_0.png" src="../_images/codesource_nmf_19_0.png" />
+<img alt="../_images/codesource_nmf_23_0.png" src="../_images/codesource_nmf_23_0.png" />
 </div>
 </div>
-<p>So nMF works well only in the limit of large sample sizes and small
-coupling variance.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">MSE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">w</span><span class="o">-</span><span class="n">w0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;MSE:&#39;</span><span class="p">,</span><span class="n">MSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&#39;MSE:&#39;, 8.53008777227379e-05)
+</pre></div></div>
+</div>
+<p>We thus conclude that nMF works well only in the limit of large sample
+sizes and small coupling variability.</p>
 </div>
 
 

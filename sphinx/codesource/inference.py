@@ -10,28 +10,30 @@ Inferring interaction from data by Free Energy Minimization (FEM)
 input: time series s
 output: interaction w, local field h0
 """
-def fem(s,nloop):
-
-    l,n= np.shape(s)
+def fem(s):
+    l,n = np.shape(s)
     m = np.mean(s,axis=0)
     ds = s - m
     st1 = s[1:]
-    
+    l1 = l-1
+
     c = np.cov(ds,rowvar=False,bias=True)
     c_inv = linalg.inv(c)
     dst = ds[:-1].T
     H = st1
     W = np.empty((n,n)) #; H0 = np.empty(n)
     
+    nloop = 10000
+
     for i0 in range(n):
         s1=st1[:,i0]
         h = H[:,i0] ; cost = np.full(nloop,100.)
         for iloop in range(nloop):
             h_av = np.mean(h)
-            hs_av = np.matmul(dst,h-h_av)/l
-            w = np.matmul(hs_av,c_inv)
+            hs_av = np.dot(dst,h-h_av)/l1
+            w = np.dot(hs_av,c_inv)
             #h0=h_av-np.sum(w*m)
-            h = np.matmul(s[:-1,:],w[:]) # + h0
+            h = np.dot(s[:-1,:],w[:]) # + h0
             
             s_model = np.tanh(h)
             cost[iloop]=np.mean((s1[:]-s_model[:])**2)
@@ -39,6 +41,8 @@ def fem(s,nloop):
             if cost[iloop] >= cost[iloop-1]: break
                        
             h *= np.divide(s1,s_model, out=np.ones_like(s1), where=s_model!=0)
+            #t = np.where(s_model !=0.)[0]
+            #h[t] *= s1[t]/s_model[t]
             
         W[i0,:] = w[:]
         #H0[i0] = h0
@@ -47,12 +51,15 @@ def fem(s,nloop):
 """---------------------------------------------------------------------------------------
 Inferring interaction by Maximum Likelihood Estimation (MLE)
 """
-def mle(s,nloop,rate,stop_criterion): 
+def mle(s,rate,stop_criterion): 
+
     l,n = s.shape
     rate = rate/l
     
     s1 = s[:-1]
     W = np.zeros((n,n))
+
+    nloop = 10000
     for i0 in range(n):
         st1 = s[1:,i0]
         
@@ -174,7 +181,7 @@ Inferring interaction from data by exact Mean Field (eMF)
 input: time series s
 output: interaction w
 """
-def emf(s,nloop,stop_criterion):
+def emf(s,stop_criterion):
     n = s.shape[1]
     
     # nMF part: ---------------------------------------------------    
@@ -204,6 +211,8 @@ def emf(s,nloop,stop_criterion):
     
     w_eMF = np.empty((n,n))
     
+    nloop = 100
+
     for i0 in range(n):
         cost = np.zeros(nloop+1) ; delta = 1.
 
@@ -218,16 +227,15 @@ def emf(s,nloop,stop_criterion):
             a, err = quad(fun2, -np.inf, np.inf)
             a = float(a)
     
-            if a==0: a = 10**(-8)
-
-            delta = (1/(a**2))* np.sum((B[i0,:]**2) * (1-m[:]**2))
-            W_temp = B[i0,:]/a
+            if a !=0: 
+                delta = (1/(a**2))* np.sum((B[i0,:]**2) * (1-m[:]**2))
+                W_temp = B[i0,:]/a
 
             H_temp = np.dot(s[:-1,:], W_temp)
             cost[iloop] = np.mean((s1[:,i0] - np.tanh(H_temp))**2)
     
             if ((stop_criterion=='yes') and (cost[iloop] >= cost[iloop-1])): break
 
-        w_eMF[i0,:]  = W_temp[:]
+        w_eMF[i0,:] = W_temp[:]
 
     return w_eMF
