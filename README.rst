@@ -11,7 +11,7 @@ Interactive notebook
 Use Binder to run our codes online 
 
 .. image:: https://mybinder.org/badge.svg
-   :target: https://mybinder.org/v2/gh/danhtaihoang/network-inference/tree/master/sphinx/codesource/master
+   :target: https://mybinder.org/v2/gh/danhtaihoang/network-inference/master?filepath=sphinx%2Fcodesource
 
 Links
 ----------------------------
