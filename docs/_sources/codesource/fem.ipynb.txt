@@ -21,7 +21,7 @@
     "(v) Repeat (ii)-(iv) until the discrepancy between observed $\\sigma_i(t+1)$ and model expectation \n",
     "$\\langle  \\sigma(t+1) \\rangle_{\\text{model}}$, $D_i(W) = \\sum_{t} \\big[ \\sigma_i(t+1) - \\langle \\sigma_i(t+1) \\rangle_{\\text{model}} \\big]^2$  starts to increase;\n",
     "\n",
-    "(vi) Compute (ii)-(iv) in parallel for every variable index $i \\in \\{1, 2, \\cdots, N\\}$.\n",
+    "(vi) Perform (ii)-(v) in parallel for every variable index $i \\in \\{1, 2, \\cdots, N\\}$.\n",
     "\n",
     "In the following, we will test the performance of our method in inferring couplings $W_{ij}$ from binary data ($\\sigma_i(t)=\\pm1$) that are generated from the kinetic Ising model. We will show that our method work well even in the hard regimes of small sample sizes and large coupling variance.\n",
     "\n",
