@@ -14,6 +14,6 @@ Table of Contents
    method  
    othermethod
    codesource/comparison.ipynb
-   higherorder 
+   higherorder   
    conclusion
 
