@@ -9,6 +9,7 @@
     "When the interactions between variables are not only linear but also\n",
     "non-linear, quadratic for instance, the local field can be described as\n",
     "$$H_i(t) = \\sum_j W_{ij} \\sigma_j (t) + \\frac{1}{2} \\sum_{j,k} Q_{ijk} \\sigma_{j}(t) \\sigma_{k}(t)$$\n",
+    "\n",
     "The algorithm for inferring couplings $W_{ij}$ and $Q_{ijk}$ is similar to the algorithm for inferring only $W_{ij}$ that are described in Section 2. The update values of couplings are computed as\n",
     "$$Q_{ijk} = \\sum_{\\mu, \\nu} \\langle \\delta E_i \\delta \\sigma_{\\mu} \\sigma_{\\nu} \\rangle[C^{-1}]_{j\\mu}[C^{-1}]_{k\\nu}\n",
     "- \\sum_{l} \\sum_{\\lambda, \\mu, \\nu} \\langle \\delta E_i \\delta \\sigma_l \\rangle \\langle \\delta \\sigma_\\lambda \\delta \\sigma_\\mu \\sigma_\\nu \\rangle [C^{-1}]_{j\\lambda} [C^{-1}]_{k\\mu} [C^{-1}]_{l\\nu}$$\n",
