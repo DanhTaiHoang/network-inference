@@ -274,10 +274,10 @@ div.nboutput div.output_area.stderr {
 <div class="section" id="Method:-Free-Energy-Minimization">
 <h1>Method: Free Energy Minimization<a class="headerlink" href="#Method:-Free-Energy-Minimization" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/danhtaihoang/network-inference/master?filepath=sphinx%2Fcodesource%2Ffem.ipynb"><img alt="Binder" src="https://mybinder.org/badge.svg" /></a></p>
-<p>A detail description of this method can be found in our paper (Ref).
-Briefly, we defined a free energy of data, and showed that minimizing
-this free energy leads to an effective estimation of interactions. The
-algorithm of our method contains the following steps:</p>
+<p>A detail description of this method can be found in our paper. Briefly,
+we defined a free energy of data, and showed that minimizing this free
+energy leads to an effective estimation of interactions. The algorithm
+of our method contains the following steps:</p>
 <ol class="lowerroman">
 <li><p class="first">Initialize <span class="math notranslate nohighlight">\(W_{ij}\)</span> at random;</p>
 </li>
@@ -305,12 +305,12 @@ starts to increase;</p>
 <span class="math notranslate nohighlight">\(i \in \{1, 2, \cdots, N\}\)</span>.</p>
 </li>
 </ol>
-<p>In the following, we will test the performance of our method in
-inferring couplings <span class="math notranslate nohighlight">\(W_{ij}\)</span> from binary data
-(<span class="math notranslate nohighlight">\(\sigma_i(t)=\pm1\)</span>) that are generated from the kinetic Ising
-model. We will show that our method work well even in the hard regimes
-of small sample sizes and large coupling variance.</p>
-<p>First of all, we import the packages to the notebook:</p>
+<p>In the following, we will test the performance of FEM in inferring
+couplings <span class="math notranslate nohighlight">\(W_{ij}\)</span> from binary data (<span class="math notranslate nohighlight">\(\sigma_i(t)=\pm1\)</span>)
+that are generated from the kinetic Ising model. We will show that our
+method works well even in the hard regimes of small sample sizes and
+large coupling variability.</p>
+<p>First of all, we import the necessary packages to the jupyte notebook:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [1]:
@@ -328,11 +328,11 @@ of small sample sizes and large coupling variance.</p>
 </pre></div>
 </div>
 </div>
-<p>The couplings are normally distributed with zero mean and standard
-deviation equal to <span class="math notranslate nohighlight">\(g/\sqrt N\)</span> which is known as
+<p>Suppose that the actual couplings are normally distributed with zero
+mean and standard deviation equal to <span class="math notranslate nohighlight">\(g/\sqrt N\)</span> which is known as
 Sherrington-Kirkpatrick model.</p>
-<div class="section" id="Small-coupling-variability">
-<h2>Small coupling variability<a class="headerlink" href="#Small-coupling-variability" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Small-coupling-variability-">
+<h2>Small coupling variability <span class="math notranslate nohighlight">\((g = 2)\)</span><a class="headerlink" href="#Small-coupling-variability-" title="Permalink to this headline">¶</a></h2>
 <p>We start by considering a system of <span class="math notranslate nohighlight">\(N = 100\)</span> variables, and
 coupling variability parameter <span class="math notranslate nohighlight">\(g = 2.0\)</span></p>
 <div class="nbinput nblast docutils container">
@@ -343,7 +343,7 @@ coupling variability parameter <span class="math notranslate nohighlight">\(g = 
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># parameter setting:</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>    <span class="c1"># number of variables</span>
-<span class="n">g</span> <span class="o">=</span> <span class="mf">2.0</span>    <span class="c1"># coupling variance</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">2.0</span>    <span class="c1"># coupling variability parameter</span>
 
 <span class="n">w0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">g</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
 </pre></div>
@@ -374,7 +374,7 @@ coupling variability parameter <span class="math notranslate nohighlight">\(g = 
 <img alt="../_images/codesource_fem_5_0.png" src="../_images/codesource_fem_5_0.png" />
 </div>
 </div>
-<p>Using function <code class="docutils literal notranslate"><span class="pre">simulate.simulate_data</span></code>, we then generate time series
+<p>Using function <code class="docutils literal notranslate"><span class="pre">simulate.generate_data</span></code>, we then generate time series
 of variable states according to the kinetic ising model. The data length
 <span class="math notranslate nohighlight">\(L = 2000\)</span> is used.</p>
 <div class="nbinput nblast docutils container">
@@ -489,10 +489,12 @@ couplings and inferred couplings: MSE =
 </pre></div></div>
 </div>
 </div>
-<div class="section" id="Large-coupling-variability">
-<h2>Large coupling variability<a class="headerlink" href="#Large-coupling-variability" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Large-coupling-variability-">
+<h2>Large coupling variability <span class="math notranslate nohighlight">\((g=4)\)</span><a class="headerlink" href="#Large-coupling-variability-" title="Permalink to this headline">¶</a></h2>
 <p>Now, let us consider a difficult regime (large coupling variability),
-<span class="math notranslate nohighlight">\(g = 4\)</span> for instance.</p>
+<span class="math notranslate nohighlight">\(g = 4\)</span> for instance. Similar to the above example, from an actual
+coupling matrix <code class="docutils literal notranslate"><span class="pre">w0</span></code>, we generate time series of variable states
+<code class="docutils literal notranslate"><span class="pre">s</span></code>. Using this time series, we recover the coupling matrix.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [9]:
@@ -551,6 +553,8 @@ couplings <code class="docutils literal notranslate"><span class="pre">w0</span>
 <img alt="../_images/codesource_fem_19_0.png" src="../_images/codesource_fem_19_0.png" />
 </div>
 </div>
+<p>The mean square error between actual couplings and inferred couplings is
+computed:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [11]:
@@ -569,16 +573,6 @@ couplings <code class="docutils literal notranslate"><span class="pre">w0</span>
 <div class="highlight"><pre>
 (&#39;MSE:&#39;, 0.006308420614357616)
 </pre></div></div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>
-</pre></div>
-</div>
 </div>
 </div>
 </div>

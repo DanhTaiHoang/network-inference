@@ -289,12 +289,12 @@ the following steps:</p>
 <li><p class="first">Compute likelihood
 <span class="math notranslate nohighlight">\(\mathcal{P}_i = \prod_{t=1}^{L-1}P[\sigma_i(t+1)|\vec{\sigma}(t)]\)</span>;</p>
 </li>
-<li><p class="first">Update <span class="math notranslate nohighlight">\(W_{ij}\)</span> incrementally through
+<li><p class="first">Update <span class="math notranslate nohighlight">\(W_{ij}\)</span> through
 <span class="math notranslate nohighlight">\(W_{ij}^{\textrm{new}} = W_{ij} + \frac{\alpha}{L-1} \frac{\partial \log {\cal{P}}_i }{\partial W_{ij}}\)</span>
-where <span class="math notranslate nohighlight">\(\alpha\)</span> represent learning rate, and
+where <span class="math notranslate nohighlight">\(\alpha\)</span> represents learning rate, and
 <span class="math notranslate nohighlight">\(\frac{\partial \log {\mathcal{P}}_i}{\partial W_{ij}} = \sum_{t=1}^{L-1} \lbrace \sigma_i(t+1) \sigma_j(t) - \tanh [H_i(t)] \sigma_j(t) \rbrace\)</span>;</p>
 </li>
-<li><p class="first">Repeat (ii)-(v) for some iterations;</p>
+<li><p class="first">Repeat the steps (ii)-(v);</p>
 </li>
 <li><p class="first">Perform (ii)-(vi) in parallel for every variable index
 <span class="math notranslate nohighlight">\(i \in \{1, 2, \cdots, N\}\)</span>.</p>
@@ -302,11 +302,11 @@ where <span class="math notranslate nohighlight">\(\alpha\)</span> represent lea
 </ol>
 <p>In the following, we will test the performance of this method for
 various cases, small coupling variability and large coupling
-variability. We will show that the MLE becomes over fitting in the
-regime of large coupling variability and small sample sizes. Applying
-our stopping criterion to MLE can make this method works significantly
-faster and slighlty more accurate.</p>
-<p>First of all, we import the packages to the notebook:</p>
+variability. We will show that MLE becomes over fitting in the regime of
+large coupling variability and small sample sizes. Applying our stopping
+criterion to MLE can make this method works significantly faster and
+slighlty more accurate.</p>
+<p>First of all, we import the packages to the jupyter notebook:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [1]:
@@ -326,7 +326,7 @@ faster and slighlty more accurate.</p>
 </div>
 </div>
 <p>We first consider a system of <span class="math notranslate nohighlight">\(N = 100\)</span> variables. Data length
-<span class="math notranslate nohighlight">\(L=2000\)</span> is used for the illustration. Leaning rate
+<span class="math notranslate nohighlight">\(L=2000\)</span> is used for the illustration. Learning rate
 <span class="math notranslate nohighlight">\(\alpha=1\)</span> is selected.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
@@ -341,8 +341,8 @@ faster and slighlty more accurate.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="Small-coupling-variability">
-<h2>Small coupling variability<a class="headerlink" href="#Small-coupling-variability" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Small-coupling-variability-">
+<h2>Small coupling variability <span class="math notranslate nohighlight">\((g = 2)\)</span><a class="headerlink" href="#Small-coupling-variability-" title="Permalink to this headline">¶</a></h2>
 <p>For the regime of small coupling variability, as other methods, we
 select <span class="math notranslate nohighlight">\(g = 2.0\)</span> for the demonstration.</p>
 <div class="nbinput nblast docutils container">
@@ -355,7 +355,7 @@ select <span class="math notranslate nohighlight">\(g = 2.0\)</span> for the dem
 </pre></div>
 </div>
 </div>
-<p>The coupling matrix is generated acorrding to the parameters.</p>
+<p>The actual coupling matrix is generated acorrding to the parameters.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [4]:
@@ -378,6 +378,8 @@ the kinetic ising model:</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="Without-our-stopping-criterion">
+<h3>Without our stopping criterion<a class="headerlink" href="#Without-our-stopping-criterion" title="Permalink to this headline">¶</a></h3>
 <p>Similar to FEM and eMF, MLE is an iterative algorithm. We first run this
 method as discribed in the literature, without stopping criterion.</p>
 <div class="nbinput docutils container">
@@ -468,6 +470,9 @@ method as discribed in the literature, without stopping criterion.</p>
 (&#39;MSE:&#39;, 0.0030760425560816744)
 </pre></div></div>
 </div>
+</div>
+<div class="section" id="With-our-stopping-criterion">
+<h3>With our stopping criterion<a class="headerlink" href="#With-our-stopping-criterion" title="Permalink to this headline">¶</a></h3>
 <p>Now, we apply our stopping criterion for this method. According to this
 criterion, we stop the iteration when the discrepancy between observed
 variables and its model expectations starts to increase.</p>
@@ -558,11 +563,12 @@ variables and its model expectations starts to increase.</p>
 (&#39;MSE:&#39;, 0.0029889738951087916)
 </pre></div></div>
 </div>
-<p>So, our stopping criterion makes MLE works slightly better (in accuracy)
+<p>So, our stopping criterion makes MLE to be slightly better (in accuracy)
 and significantly faster.</p>
 </div>
-<div class="section" id="Large-coupling-variability">
-<h2>Large coupling variability<a class="headerlink" href="#Large-coupling-variability" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="Large-coupling-variability-">
+<h2>Large coupling variability <span class="math notranslate nohighlight">\((g = 4)\)</span><a class="headerlink" href="#Large-coupling-variability-" title="Permalink to this headline">¶</a></h2>
 <p>Now, let us consider the regime of large coupling variability,
 <span class="math notranslate nohighlight">\(g=4\)</span> for instance.</p>
 <div class="nbinput nblast docutils container">
@@ -578,6 +584,8 @@ and significantly faster.</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="Without-our-stopping-criterion">
+<h3>Without our stopping criterion<a class="headerlink" href="#Without-our-stopping-criterion" title="Permalink to this headline">¶</a></h3>
 <p>When our stopping criterion does not apply to MLE:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
@@ -665,6 +673,9 @@ and significantly faster.</p>
 (&#39;MSE:&#39;, 0.01781885966000276)
 </pre></div></div>
 </div>
+</div>
+<div class="section" id="With-our-stopping-criterion">
+<h3>With our stopping criterion<a class="headerlink" href="#With-our-stopping-criterion" title="Permalink to this headline">¶</a></h3>
 <p>When our stopping criterion does apply to MLE:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
@@ -753,17 +764,8 @@ and significantly faster.</p>
 </pre></div></div>
 </div>
 <p>Similar to the regime of small coupling variability, our stopping
-criterion makes MLE works slightly better (in accuracy) and
+criterion makes MLE to be slightly better (in accuracy) and
 significantly faster.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>
-</pre></div>
-</div>
 </div>
 </div>
 </div>

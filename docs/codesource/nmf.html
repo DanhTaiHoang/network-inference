@@ -299,6 +299,8 @@ packages.</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="Small-coupling-variability--and-small-sample-size-">
+<h2>Small coupling variability <span class="math notranslate nohighlight">\((g = 2)\)</span> and small sample size <span class="math notranslate nohighlight">\((L = 2 \times 10^3)\)</span><a class="headerlink" href="#Small-coupling-variability--and-small-sample-size-" title="Permalink to this headline">¶</a></h2>
 <p>We first use the same parameters as the first example in FEM section
 above: <span class="math notranslate nohighlight">\(N = 100\)</span>, <span class="math notranslate nohighlight">\(g = 2.0\)</span>, and <span class="math notranslate nohighlight">\(L=2000\)</span>.</p>
 <div class="nbinput nblast docutils container">
@@ -395,8 +397,11 @@ couplings is calculated:</p>
 (&#39;MSE:&#39;, 0.016432507950391948)
 </pre></div></div>
 </div>
-<p>The inference result is very poor.</p>
-<p>Now, if we use a much larger sample size, <span class="math notranslate nohighlight">\(L=100000\)</span> for instance.</p>
+<p>The inference performance is very poor.</p>
+</div>
+<div class="section" id="Small-coupling-variability-()-and-large-sample-size-()">
+<h2>Small coupling variability (<span class="math notranslate nohighlight">\(g = 2\)</span>) and large sample size (<span class="math notranslate nohighlight">\(L=10^5\)</span>)<a class="headerlink" href="#Small-coupling-variability-()-and-large-sample-size-()" title="Permalink to this headline">¶</a></h2>
+<p>Now, if we use a much larger sample size, <span class="math notranslate nohighlight">\(L=10^5\)</span> for instance.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [6]:
@@ -474,6 +479,9 @@ couplings is calculated:</p>
 </div>
 <p>The result shows that nMF produces bad prediction results in the limit
 of large coupling variability, even for large sample sizes.</p>
+</div>
+<div class="section" id="Very-small-coupling-variability--and-small-sample-size-">
+<h2>Very small coupling variability <span class="math notranslate nohighlight">\((g=0.5)\)</span> and small sample size <span class="math notranslate nohighlight">\((L=2 \times 10^3 )\)</span><a class="headerlink" href="#Very-small-coupling-variability--and-small-sample-size-" title="Permalink to this headline">¶</a></h2>
 <p>Now, let us consider a very small coupling variability, <span class="math notranslate nohighlight">\(g = 0.5\)</span>
 for instance.</p>
 <div class="nbinput nblast docutils container">
@@ -562,8 +570,11 @@ for instance.</p>
 (&#39;MSE:&#39;, 0.0005299059905942844)
 </pre></div></div>
 </div>
-<p>Now, let us see if the inference result can be improved with larger data
-length, <span class="math notranslate nohighlight">\(L=100000\)</span> for instance.</p>
+</div>
+<div class="section" id="Very-small-coupling-variability--and-large-sample-size-">
+<h2>Very small coupling variability <span class="math notranslate nohighlight">\((g=0.5)\)</span> and large sample size <span class="math notranslate nohighlight">\((L=10^5)\)</span><a class="headerlink" href="#Very-small-coupling-variability--and-large-sample-size-" title="Permalink to this headline">¶</a></h2>
+<p>Now, let us see wherether the inference result can be improved with a
+larger data length, <span class="math notranslate nohighlight">\(L=10^5\)</span> for instance.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [13]:
@@ -638,8 +649,9 @@ length, <span class="math notranslate nohighlight">\(L=100000\)</span> for insta
 (&#39;MSE:&#39;, 8.53008777227379e-05)
 </pre></div></div>
 </div>
-<p>We thus conclude that nMF works well only in the limit of large sample
-sizes and small coupling variability.</p>
+<p>We thus conclude that nMF works well only in the limit of very small
+coupling variability and large sample sizes.</p>
+</div>
 </div>
 
 

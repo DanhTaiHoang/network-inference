@@ -273,13 +273,16 @@ div.nboutput div.output_area.stderr {
 </style>
 <div class="section" id="Non-linear-interactions">
 <h1>Non-linear interactions<a class="headerlink" href="#Non-linear-interactions" title="Permalink to this headline">¶</a></h1>
-<p>When the interactions between variables are not only linear but also
-non-linear, quadratic for instance, the local field can be described as</p>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/danhtaihoang/network-inference/master?filepath=sphinx%2Fcodesource%2Fquadratic_notebook.ipynb"><img alt="Binder" src="https://mybinder.org/badge.svg" /></a></p>
+<p>When the interactions between variables contains not only linear term
+but also non-linear term, quadratic for instance, the local field can be
+demonstrated as</p>
 <div class="math notranslate nohighlight">
 \[H_i(t) = \sum_j W_{ij} \sigma_j (t) + \frac{1}{2} \sum_{j,k} Q_{ijk} \sigma_{j}(t) \sigma_{k}(t)\]</div>
 <p>The algorithm for inferring couplings <span class="math notranslate nohighlight">\(W_{ij}\)</span> and <span class="math notranslate nohighlight">\(Q_{ijk}\)</span>
 is similar to the algorithm for inferring only <span class="math notranslate nohighlight">\(W_{ij}\)</span> that are
-described in Section 2. The update values of couplings are computed as</p>
+described in Method section. The update values of couplings are computed
+as</p>
 <div class="math notranslate nohighlight">
 \[Q_{ijk} = \sum_{\mu, \nu} \langle \delta E_i \delta \sigma_{\mu} \sigma_{\nu} \rangle[C^{-1}]_{j\mu}[C^{-1}]_{k\nu}
 - \sum_{l} \sum_{\lambda, \mu, \nu} \langle \delta E_i \delta \sigma_l \rangle \langle \delta \sigma_\lambda \delta \sigma_\mu \sigma_\nu \rangle [C^{-1}]_{j\lambda} [C^{-1}]_{k\mu} [C^{-1}]_{l\nu}\]</div>
@@ -299,6 +302,7 @@ notebook.</p>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">timeit</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">quadratic</span> <span class="kn">as</span> <span class="nn">quad</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
@@ -316,8 +320,8 @@ determined by parameter <code class="docutils literal notranslate"><span class="
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># parameter setting:</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="n">g</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">1.0</span>
 </pre></div>
 </div>
 </div>
@@ -342,7 +346,7 @@ and quadratic couplings <span class="math notranslate nohighlight">\(q_{ijk}\)</
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">l</span> <span class="o">=</span> <span class="mi">200000</span>
+<span></span><span class="n">l</span> <span class="o">=</span> <span class="mi">5000</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">quad</span><span class="o">.</span><span class="n">generate_data</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">q0</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -369,15 +373,19 @@ and quadratic couplings <span class="math notranslate nohighlight">\(q_{ijk}\)</
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;linear term&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.3</span><span class="p">],[</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.3</span><span class="p">],</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.6</span><span class="p">],[</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.6</span><span class="p">],</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;actual couplings&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;inferred couplings&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">],(</span><span class="s1">&#39;-0.5&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;0.5&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">],(</span><span class="s1">&#39;-0.5&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;0.5&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;non-linear term&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">q0</span><span class="p">,</span><span class="n">q</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">q0</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;actual couplings&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;inferred couplings&#39;</span><span class="p">)</span>
 

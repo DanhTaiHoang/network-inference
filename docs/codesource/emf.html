@@ -276,7 +276,7 @@ div.nboutput div.output_area.stderr {
 <p><a class="reference external" href="https://mybinder.org/v2/gh/danhtaihoang/network-inference/master?filepath=sphinx%2Fcodesource%2Femf.ipynb"><img alt="Binder" src="https://mybinder.org/badge.svg" /></a></p>
 <p>Exact mean field (eMF) is another mean field approximate, besides nMF
 and TAP. We show in the following that we can improve the performance of
-this method fitting by adding our stopping criterion. In general, eMF
+this method by adding our stopping criterion. In general, eMF
 outperforms nMF and TAP, but it is still worse than FEM and MLE,
 especially in the limit of small sample sizes and large coupling
 variability.</p>
@@ -297,6 +297,8 @@ variability.</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="Small-coupling-variability--and-small-sample-size-">
+<h2>Small coupling variability <span class="math notranslate nohighlight">\((g = 2)\)</span> and small sample size <span class="math notranslate nohighlight">\((L = 2 \times 10^3)\)</span><a class="headerlink" href="#Small-coupling-variability--and-small-sample-size-" title="Permalink to this headline">¶</a></h2>
 <p>As other methods, we first use the same parameter setting:
 <span class="math notranslate nohighlight">\(N = 100\)</span>, <span class="math notranslate nohighlight">\(g = 2.0\)</span>, and <span class="math notranslate nohighlight">\(L=2000\)</span>.</p>
 <div class="nbinput nblast docutils container">
@@ -475,6 +477,9 @@ will see that the performance is significantly improved.</p>
 (&#39;MSE:&#39;, 0.0072491113790595)
 </pre></div></div>
 </div>
+</div>
+<div class="section" id="Small-coupling-variability--and-large-sample-size-">
+<h2>Small coupling variability <span class="math notranslate nohighlight">\((g = 2)\)</span> and large sample size <span class="math notranslate nohighlight">\((L = 10^5)\)</span><a class="headerlink" href="#Small-coupling-variability--and-large-sample-size-" title="Permalink to this headline">¶</a></h2>
 <p>Now, let consider large sample size regime, <span class="math notranslate nohighlight">\(L = 100000\)</span> for
 instance.</p>
 <div class="nbinput nblast docutils container">
@@ -563,6 +568,9 @@ instance.</p>
 </div>
 <p>From the above result, we conclude that eMF works better than eMF and
 TAP but it is worse than FEM and MLE.</p>
+</div>
+<div class="section" id="Very-small-coupling-variability--and-small-sample-size-">
+<h2>Very small coupling variability <span class="math notranslate nohighlight">\((g = 0.5)\)</span> and small sample size <span class="math notranslate nohighlight">\((L = 2 \times 10^3)\)</span><a class="headerlink" href="#Very-small-coupling-variability--and-small-sample-size-" title="Permalink to this headline">¶</a></h2>
 <p>Now, let consider a regime of very small coupling variability,
 <span class="math notranslate nohighlight">\(g = 0.5\)</span>.</p>
 <div class="nbinput nblast docutils container">
@@ -660,6 +668,9 @@ TAP but it is worse than FEM and MLE.</p>
 (&#39;MSE:&#39;, 0.001573704964233979)
 </pre></div></div>
 </div>
+</div>
+<div class="section" id="Very-small-coupling-variability--and-large-sample-size-">
+<h2>Very small coupling variability <span class="math notranslate nohighlight">\((g = 0.5)\)</span> and large sample size <span class="math notranslate nohighlight">\((L = 10^5)\)</span><a class="headerlink" href="#Very-small-coupling-variability--and-large-sample-size-" title="Permalink to this headline">¶</a></h2>
 <p>With a very larger sample sizes, <span class="math notranslate nohighlight">\(L = 100000\)</span></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
@@ -745,17 +756,8 @@ TAP but it is worse than FEM and MLE.</p>
 </pre></div></div>
 </div>
 <p>Similar to other mean field approximations such as nMF and TAP, eMF
-works well only in the limit of large sample sizes and small coupling
-variability.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span>
-</pre></div>
-</div>
+works well only in the limit of large sample sizes and very small
+coupling variability.</p>
 </div>
 </div>
 

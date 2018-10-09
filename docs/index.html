@@ -97,11 +97,11 @@
 <h1>Network Inference in Stochastic Systems<a class="headerlink" href="#network-inference-in-stochastic-systems" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>The project was designed to develop a data-driven approach for network inference in stochastic systems. From configurations of variables, we want to identify the interactions between them, then make predictions. We compare the performace of our method with other existing methods such as mean field approximations, maximum likelihood estimation.</p>
+<p>We developed a data-driven approach for network inference in stochastic systems, namely Free Energy Minimazation (FEM). From configurations of variables, we identify the interactions between them, then make predictions. It turn out that FEM outperforms other existing methods such as mean field approximations and Maximum Likelihood Estimation (MLE), especially in the regimes of large coupling variability and small sample sizes. Besides better performance, FEM is parameter-free and significantly faster than MLE.</p>
 </div>
 <div class="section" id="interactive-notebook">
 <h2>Interactive notebook<a class="headerlink" href="#interactive-notebook" title="Permalink to this headline">¶</a></h2>
-<p>Use Binder to run our codes online</p>
+<p>Use Binder to run our codes online. You are welcome to change the parameters and edit the jupyter notebooks as you want.</p>
 <a class="reference external image-reference" href="https://mybinder.org/v2/gh/danhtaihoang/network-inference/master?filepath=sphinx%2Fcodesource"><img alt="https://mybinder.org/badge.svg" src="https://mybinder.org/badge.svg" /></a>
 </div>
 <div class="section" id="links">
@@ -109,9 +109,13 @@
 <dl class="docutils">
 <dt>Code Documentation</dt>
 <dd><a class="reference external" href="https://danhtaihoang.github.io/network-inference">https://danhtaihoang.github.io/network-inference</a></dd>
-<dt>Source Code</dt>
+<dt>Code Source</dt>
 <dd><a class="reference external" href="https://github.com/danhtaihoang/network-inference">https://github.com/danhtaihoang/network-inference</a></dd>
 </dl>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<p><a href="#id1"><span class="problematic" id="id2">`</span></a>Danh-Tai Hoang, Juyong Song, Vipul Periwal, and Junghyo Jo, Causality inference in stochastic systems from neurons to currencies: Profiting from small sample size, arXiv:1705.06384. &lt;https://arxiv.org/abs/1705.06384&gt; <a href="#id3"><span class="problematic" id="id4">`</span></a>_</p>
 </div>
 <div class="section" id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
@@ -119,8 +123,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="model.html">Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="codesource/fem.html">Method: Free Energy Minimization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="codesource/fem.html#Small-coupling-variability">Small coupling variability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="codesource/fem.html#Large-coupling-variability">Large coupling variability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="codesource/fem.html#Small-coupling-variability-">Small coupling variability <span class="math notranslate nohighlight">\((g = 2)\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="codesource/fem.html#Large-coupling-variability-">Large coupling variability <span class="math notranslate nohighlight">\((g=4)\)</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="othermethod.html">Other methods</a><ul>
@@ -136,10 +140,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="codesource/quadratic_notebook.html">Non-linear interactions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="conclusion.html#section-1">Section 1</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
 </ul>
 </div>
 </div>

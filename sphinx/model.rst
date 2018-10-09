@@ -4,7 +4,7 @@ Model
 To demonstrate the interdependence between variables in stochastic 
 systems, we use a kinetic model in which the state of variable :math:`i`
 at the time point :math:`t+1`, :math:`\sigma_i(t+1)` :math:`(i = 1,N)`,
-depend on the state of itself and other variables at the previous time
+depends on the state of itself and other variables at the previous time
 point :math:`t`, :math:`\vec{\sigma}(t)`, as the following conditional
 probability
 
@@ -18,4 +18,4 @@ field, and
 normalizing factor. Intuitively, the state :math:`\sigma_i(t+1)` tends
 to the same direction with local field :math:`H_i(t)`. 
 
-Our goal is to infer the coupling strength between variables :math:`W_{ij}` from time series of variable states :math:`\vec{\sigma}`.
+In the inverse problem, we infer the coupling strength between variables :math:`W_{ij}` from time series of variable states :math:`\vec{\sigma}`.

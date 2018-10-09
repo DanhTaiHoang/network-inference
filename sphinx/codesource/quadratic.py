@@ -3,13 +3,11 @@ inferring quadratic interactions
 """
 import numpy as np
 from scipy import linalg
-
 import function as ft
 
 #=========================================================================================
-"""generate quadratic term with standart deviation g/n then make it to be 
-   symmetry: q[i,j,k] = q[i,k,j] 
-   and no-self interaction: q[i,j,j] = 0  
+"""generate quadratic term with standard deviation g/n then make it to be 
+   symmetry: q[i,j,k] = q[i,k,j] and no-self interactions: q[i,j,j] = 0  
 """ 
 def generate_quadratic(g,n):
     q = np.random.normal(0.0,g/n,size=(n,n,n))
@@ -49,22 +47,17 @@ def inference(s):
     l,n= np.shape(s)
 
     m = np.mean(s[:-1],axis=0)
-    ds = s - m
-    ds = ds[:-1]
-    st1 = s[1:]
+    ds = s[:-1] - m
 
     c = np.cov(ds,rowvar=False,bias=True)
     c1 = linalg.inv(c) # inverse
-    dst = ds[:-1].T
-    H = st1
     W = np.empty((n,n)) ; Q = np.empty((n,n,n))
 
-    nloop = 20
-            
+    nloop = 100
+    
     for i0 in range(n):
-        h = H[:,i0]
-        s1 = st1[:,i0]
-
+        s1 = s[1:,i0]
+        h = s1
         cost = np.full(nloop,100.)
         for iloop in range(nloop):
             dh = h - h.mean()
@@ -75,7 +68,6 @@ def inference(s):
             ## ss[t,i,j] = s[t,i]*s[t,j]
             ss = s[:-1,:,np.newaxis]*s[:-1,np.newaxis,:]
             dss = ss - np.mean(ss,axis=0)
-            #print(dss.shape)
 
             ##dhdss[t,mu,nu] = dh[t]*dss[t,mu,nu]:
             dhdss = dh[:,np.newaxis,np.newaxis]*dss
@@ -104,8 +96,8 @@ def inference(s):
             ##-------- calculate q = q1 - q2 -------------
             q = q1 - q2
 
-            for j in range(n):
-                q[j,j]=0.
+            ## q[j,j] = 0.
+            np.fill_diagonal(q,0.)
 
             w = np.dot(c1,dhds_av) - np.dot(q,m)
 
@@ -126,8 +118,5 @@ def inference(s):
             #slope_q = np.sum(q0[i0,:,:]*q)/np.sum(q0[i0,:,:]**2) 
 
             #print(slope,slope_q,cost[iloop])
-
-        W[i0,:] = w
-        Q[i0,:,:] = q
-
+        W[i0] = w ; Q[i0] = q
     return W,Q
