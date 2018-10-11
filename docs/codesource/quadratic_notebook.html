@@ -274,22 +274,22 @@ div.nboutput div.output_area.stderr {
 <div class="section" id="Non-linear-interactions">
 <h1>Non-linear interactions<a class="headerlink" href="#Non-linear-interactions" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/danhtaihoang/network-inference/master?filepath=sphinx%2Fcodesource%2Fquadratic_notebook.ipynb"><img alt="Binder" src="https://mybinder.org/badge.svg" /></a></p>
-<p>When the interactions between variables contains not only linear term
-but also non-linear term, quadratic for instance, the local field can be
-demonstrated as</p>
+<p>When the interactions between variables contains not only linear terms
+but also non-linear terms, quadratic for instance, the local field can
+be written as</p>
 <div class="math notranslate nohighlight">
 \[H_i(t) = \sum_j W_{ij} \sigma_j (t) + \frac{1}{2} \sum_{j,k} Q_{ijk} \sigma_{j}(t) \sigma_{k}(t)\]</div>
 <p>The algorithm for inferring couplings <span class="math notranslate nohighlight">\(W_{ij}\)</span> and <span class="math notranslate nohighlight">\(Q_{ijk}\)</span>
-is similar to the algorithm for inferring only <span class="math notranslate nohighlight">\(W_{ij}\)</span> that are
-described in Method section. The update values of couplings are computed
-as</p>
+is similar to the algorithm for inferring only <span class="math notranslate nohighlight">\(W_{ij}\)</span> as
+described in the Method section. The updated values of couplings are
+computed as</p>
 <div class="math notranslate nohighlight">
 \[Q_{ijk} = \sum_{\mu, \nu} \langle \delta E_i \delta \sigma_{\mu} \sigma_{\nu} \rangle[C^{-1}]_{j\mu}[C^{-1}]_{k\nu}
 - \sum_{l} \sum_{\lambda, \mu, \nu} \langle \delta E_i \delta \sigma_l \rangle \langle \delta \sigma_\lambda \delta \sigma_\mu \sigma_\nu \rangle [C^{-1}]_{j\lambda} [C^{-1}]_{k\mu} [C^{-1}]_{l\nu}\]</div>
 <p>and</p>
 <div class="math notranslate nohighlight">
 \[W_{ij} = \sum_{k} \lbrace \langle \delta E_i \delta \sigma_k \rangle [C^{-1}]_{kj} - Q_{ijk}\langle \sigma_k \rangle \rbrace\]</div>
-<p>In the following, we will demontrade the performance of our method in
+<p>In the following, we will demonstrate the performance of our method in
 inferring the linear couplings <span class="math notranslate nohighlight">\(W_{ij}\)</span> and quadratic couplings
 <span class="math notranslate nohighlight">\(Q_{ijk}\)</span> from configurations of variables <span class="math notranslate nohighlight">\(\vec \sigma\)</span>.</p>
 <p>As usual, we start by importing the nesscesary packages into the jupyter
@@ -325,8 +325,9 @@ determined by parameter <code class="docutils literal notranslate"><span class="
 </pre></div>
 </div>
 </div>
-<p>From the parameters, we will generate linear couplings <span class="math notranslate nohighlight">\(w_{ij}\)</span>
-and quadratic couplings <span class="math notranslate nohighlight">\(q_{ijk}\)</span>. Those are actual couplings.</p>
+<p>From the parameters, we generate linear couplings <span class="math notranslate nohighlight">\(w_{ij}\)</span> and
+quadratic couplings <span class="math notranslate nohighlight">\(q_{ijk}\)</span>. These are the couplings that our
+inference algorithms has to reproduce.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [3]:
@@ -338,8 +339,8 @@ and quadratic couplings <span class="math notranslate nohighlight">\(q_{ijk}\)</
 </pre></div>
 </div>
 </div>
-<p>Now, from this couplings, we will generate configurations of variables
-<code class="docutils literal notranslate"><span class="pre">s</span></code> according to the kinetic ising model.</p>
+<p>Now, from these couplings, we will generate configurations of variables
+<code class="docutils literal notranslate"><span class="pre">s</span></code> according to the kinetic Ising model.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [4]:
@@ -362,7 +363,7 @@ and quadratic couplings <span class="math notranslate nohighlight">\(q_{ijk}\)</
 </pre></div>
 </div>
 </div>
-<p>We plot the inferred couplings as function of actual couplings.</p>
+<p>We plot the inferred couplings as function of the actual couplings.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [6]:

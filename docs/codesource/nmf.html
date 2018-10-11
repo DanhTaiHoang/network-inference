@@ -274,12 +274,12 @@ div.nboutput div.output_area.stderr {
 <div class="section" id="Naive-Mean-Field-approximation">
 <h1>Naive Mean-Field approximation<a class="headerlink" href="#Naive-Mean-Field-approximation" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/danhtaihoang/network-inference/master?filepath=sphinx%2Fcodesource%2Fnmf.ipynb"><img alt="Binder" src="https://mybinder.org/badge.svg" /></a></p>
-<p>In this section, we show the performance of Naive Mean-Field
+<p>In this section, we show the performance of the Naive Mean-Field
 approximation (nMF) to infer couplings <span class="math notranslate nohighlight">\(W_{ij}\)</span> from
-configurations <code class="docutils literal notranslate"><span class="pre">s</span></code>. We will see that nMF method can produce good
-inference results only in the regimes of large sample sizes and small
-coupling variability. This method produces bad results in the limit of
-small sample sizes or large coupling variability.</p>
+configurations <code class="docutils literal notranslate"><span class="pre">s</span></code>. We will see that nMF gives good inference results
+only in the regimes of large sample sizes and small coupling variability
+but results in the limit of small sample sizes or large coupling
+variability are inaccurate.</p>
 <p>To start using our jupyter notebook, we first import the nescessary
 packages.</p>
 <div class="nbinput nblast docutils container">
@@ -319,7 +319,7 @@ above: <span class="math notranslate nohighlight">\(N = 100\)</span>, <span clas
 </pre></div>
 </div>
 </div>
-<p>Now, we apply nMF method to recover the coupling matrix <code class="docutils literal notranslate"><span class="pre">w</span></code> from
+<p>Now, we apply the nMF method to recover the coupling matrix <code class="docutils literal notranslate"><span class="pre">w</span></code> from
 variable configurations <code class="docutils literal notranslate"><span class="pre">s</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
@@ -399,9 +399,9 @@ couplings is calculated:</p>
 </div>
 <p>The inference performance is very poor.</p>
 </div>
-<div class="section" id="Small-coupling-variability-()-and-large-sample-size-()">
-<h2>Small coupling variability (<span class="math notranslate nohighlight">\(g = 2\)</span>) and large sample size (<span class="math notranslate nohighlight">\(L=10^5\)</span>)<a class="headerlink" href="#Small-coupling-variability-()-and-large-sample-size-()" title="Permalink to this headline">¶</a></h2>
-<p>Now, if we use a much larger sample size, <span class="math notranslate nohighlight">\(L=10^5\)</span> for instance.</p>
+<div class="section" id="Small-coupling-variability--and-large-sample-size-">
+<h2>Small coupling variability <span class="math notranslate nohighlight">\((g = 2)\)</span> and large sample size <span class="math notranslate nohighlight">\((L=10^5)\)</span><a class="headerlink" href="#Small-coupling-variability--and-large-sample-size-" title="Permalink to this headline">¶</a></h2>
+<p>Now, if we use a much larger sample size, <span class="math notranslate nohighlight">\(L=10^5\)</span> for instance:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [6]:
@@ -481,8 +481,8 @@ couplings is calculated:</p>
 of large coupling variability, even for large sample sizes.</p>
 </div>
 <div class="section" id="Very-small-coupling-variability--and-small-sample-size-">
-<h2>Very small coupling variability <span class="math notranslate nohighlight">\((g=0.5)\)</span> and small sample size <span class="math notranslate nohighlight">\((L=2 \times 10^3 )\)</span><a class="headerlink" href="#Very-small-coupling-variability--and-small-sample-size-" title="Permalink to this headline">¶</a></h2>
-<p>Now, let us consider a very small coupling variability, <span class="math notranslate nohighlight">\(g = 0.5\)</span>
+<h2>Very small coupling variability <span class="math notranslate nohighlight">\((g=0.5)\)</span> and small sample size <span class="math notranslate nohighlight">\((L=2 \times 10^3)\)</span><a class="headerlink" href="#Very-small-coupling-variability--and-small-sample-size-" title="Permalink to this headline">¶</a></h2>
+<p>Now, let us consider very small coupling variability, <span class="math notranslate nohighlight">\(g = 0.5\)</span>
 for instance.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
@@ -495,7 +495,7 @@ for instance.</p>
 </pre></div>
 </div>
 </div>
-<p>Data length <span class="math notranslate nohighlight">\(L=2000\)</span> is used for our first example.</p>
+<p>We use data length <span class="math notranslate nohighlight">\(L=2000\)</span> for our first example.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [10]:
@@ -573,7 +573,7 @@ for instance.</p>
 </div>
 <div class="section" id="Very-small-coupling-variability--and-large-sample-size-">
 <h2>Very small coupling variability <span class="math notranslate nohighlight">\((g=0.5)\)</span> and large sample size <span class="math notranslate nohighlight">\((L=10^5)\)</span><a class="headerlink" href="#Very-small-coupling-variability--and-large-sample-size-" title="Permalink to this headline">¶</a></h2>
-<p>Now, let us see wherether the inference result can be improved with a
+<p>Now, let us see whether the nMF inference result can be improved with a
 larger data length, <span class="math notranslate nohighlight">\(L=10^5\)</span> for instance.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>

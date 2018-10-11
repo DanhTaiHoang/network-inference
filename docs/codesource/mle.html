@@ -275,38 +275,39 @@ div.nboutput div.output_area.stderr {
 <h1>Maximum Likelihood Estimation<a class="headerlink" href="#Maximum-Likelihood-Estimation" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/danhtaihoang/network-inference/master?filepath=sphinx%2Fcodesource%2Fmle.ipynb"><img alt="Binder" src="https://mybinder.org/badge.svg" /></a></p>
 <p>Maximum likelihood estimation (MLE) is a standard method in the field of
-network inference. The algorithm of MLE for the kinetic model contains
-the following steps:</p>
+network inference. The MLE algorithm for the kinetic Ising model
+contains the following steps:</p>
 <ol class="lowerroman">
 <li><p class="first">Initialize <span class="math notranslate nohighlight">\(W_{ij}\)</span> at random;</p>
 </li>
-<li><p class="first">Compute local field <span class="math notranslate nohighlight">\(H_i(t) = \sum_j W_{ij} \sigma_j (t)\)</span>;</p>
+<li><p class="first">Compute the local field
+<span class="math notranslate nohighlight">\(H_i(t) = \sum_j W_{ij} \sigma_j (t)\)</span>;</p>
 </li>
-<li><p class="first">Compute probability;</p>
+<li><p class="first">Compute the probability;</p>
 <div class="math notranslate nohighlight">
 \[P[\sigma_i(t+1)|\vec{\sigma}(t)] = \frac{\exp [ \sigma_i(t+1) H_i(t)]}{\sum_{\sigma_i(t+1)} \exp[\sigma_i(t+1) H_i(t)]}\]</div>
 </li>
-<li><p class="first">Compute likelihood
+<li><p class="first">Compute the likelihood
 <span class="math notranslate nohighlight">\(\mathcal{P}_i = \prod_{t=1}^{L-1}P[\sigma_i(t+1)|\vec{\sigma}(t)]\)</span>;</p>
 </li>
 <li><p class="first">Update <span class="math notranslate nohighlight">\(W_{ij}\)</span> through
 <span class="math notranslate nohighlight">\(W_{ij}^{\textrm{new}} = W_{ij} + \frac{\alpha}{L-1} \frac{\partial \log {\cal{P}}_i }{\partial W_{ij}}\)</span>
-where <span class="math notranslate nohighlight">\(\alpha\)</span> represents learning rate, and
+where <span class="math notranslate nohighlight">\(\alpha\)</span> is a learning rate parameter, and
 <span class="math notranslate nohighlight">\(\frac{\partial \log {\mathcal{P}}_i}{\partial W_{ij}} = \sum_{t=1}^{L-1} \lbrace \sigma_i(t+1) \sigma_j(t) - \tanh [H_i(t)] \sigma_j(t) \rbrace\)</span>;</p>
 </li>
-<li><p class="first">Repeat the steps (ii)-(v);</p>
+<li><p class="first">Repeat steps (ii)-(v);</p>
 </li>
 <li><p class="first">Perform (ii)-(vi) in parallel for every variable index
 <span class="math notranslate nohighlight">\(i \in \{1, 2, \cdots, N\}\)</span>.</p>
 </li>
 </ol>
 <p>In the following, we will test the performance of this method for
-various cases, small coupling variability and large coupling
-variability. We will show that MLE becomes over fitting in the regime of
+various cases: small coupling variability and large coupling
+variability. We will show that MLE starts to overfit in the regime of
 large coupling variability and small sample sizes. Applying our stopping
 criterion to MLE can make this method works significantly faster and
-slighlty more accurate.</p>
-<p>First of all, we import the packages to the jupyter notebook:</p>
+somewhat more accurately.</p>
+<p>First of all, we import some packages to the jupyter notebook:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [1]:
@@ -326,8 +327,8 @@ slighlty more accurate.</p>
 </div>
 </div>
 <p>We first consider a system of <span class="math notranslate nohighlight">\(N = 100\)</span> variables. Data length
-<span class="math notranslate nohighlight">\(L=2000\)</span> is used for the illustration. Learning rate
-<span class="math notranslate nohighlight">\(\alpha=1\)</span> is selected.</p>
+<span class="math notranslate nohighlight">\(L=2000\)</span> is used for this illustration with a learning rate
+<span class="math notranslate nohighlight">\(\alpha=1.\)</span></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [2]:
@@ -343,8 +344,8 @@ slighlty more accurate.</p>
 </div>
 <div class="section" id="Small-coupling-variability-">
 <h2>Small coupling variability <span class="math notranslate nohighlight">\((g = 2)\)</span><a class="headerlink" href="#Small-coupling-variability-" title="Permalink to this headline">¶</a></h2>
-<p>For the regime of small coupling variability, as other methods, we
-select <span class="math notranslate nohighlight">\(g = 2.0\)</span> for the demonstration.</p>
+<p>For the regime of small coupling variability, as with the other methods,
+we select <span class="math notranslate nohighlight">\(g = 2.0\)</span> for the demonstration.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [3]:
@@ -355,7 +356,7 @@ select <span class="math notranslate nohighlight">\(g = 2.0\)</span> for the dem
 </pre></div>
 </div>
 </div>
-<p>The actual coupling matrix is generated acorrding to the parameters.</p>
+<p>The actual coupling matrix is generated as follows:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [4]:
@@ -366,8 +367,8 @@ select <span class="math notranslate nohighlight">\(g = 2.0\)</span> for the dem
 </pre></div>
 </div>
 </div>
-<p>From the coupling matrix, we generate time series of variables based on
-the kinetic ising model:</p>
+<p>From the coupling matrix, we generate a time series of variables based
+on the kinetic Ising model:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [5]:
@@ -381,7 +382,7 @@ the kinetic ising model:</p>
 <div class="section" id="Without-our-stopping-criterion">
 <h3>Without our stopping criterion<a class="headerlink" href="#Without-our-stopping-criterion" title="Permalink to this headline">¶</a></h3>
 <p>Similar to FEM and eMF, MLE is an iterative algorithm. We first run this
-method as discribed in the literature, without stopping criterion.</p>
+method as described in the literature, without a stopping criterion.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [6]:
@@ -563,8 +564,8 @@ variables and its model expectations starts to increase.</p>
 (&#39;MSE:&#39;, 0.0029889738951087916)
 </pre></div></div>
 </div>
-<p>So, our stopping criterion makes MLE to be slightly better (in accuracy)
-and significantly faster.</p>
+<p>Evidently, our stopping criterion makes MLE slightly better (in
+accuracy) and significantly faster.</p>
 </div>
 </div>
 <div class="section" id="Large-coupling-variability-">
@@ -586,7 +587,7 @@ and significantly faster.</p>
 </div>
 <div class="section" id="Without-our-stopping-criterion">
 <h3>Without our stopping criterion<a class="headerlink" href="#Without-our-stopping-criterion" title="Permalink to this headline">¶</a></h3>
-<p>When our stopping criterion does not apply to MLE:</p>
+<p>When we do not apply our stopping criterion to MLE:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [13]:
@@ -676,7 +677,7 @@ and significantly faster.</p>
 </div>
 <div class="section" id="With-our-stopping-criterion">
 <h3>With our stopping criterion<a class="headerlink" href="#With-our-stopping-criterion" title="Permalink to this headline">¶</a></h3>
-<p>When our stopping criterion does apply to MLE:</p>
+<p>When our stopping criterion is applied to MLE:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [16]:
@@ -763,9 +764,8 @@ and significantly faster.</p>
 (&#39;MSE:&#39;, 0.0172333170396427)
 </pre></div></div>
 </div>
-<p>Similar to the regime of small coupling variability, our stopping
-criterion makes MLE to be slightly better (in accuracy) and
-significantly faster.</p>
+<p>As in the small coupling variability regime, our stopping criterion
+makes MLE slightly better (in accuracy) and significantly faster.</p>
 </div>
 </div>
 </div>

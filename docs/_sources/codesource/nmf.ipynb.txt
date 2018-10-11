@@ -8,7 +8,7 @@
     "\n",
     "[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/danhtaihoang/network-inference/master?filepath=sphinx%2Fcodesource%2Fnmf.ipynb)\n",
     "\n",
-    "In this section, we show the performance of Naive Mean-Field approximation (nMF) to infer couplings $W_{ij}$ from configurations `s`. We will see that nMF method can produce good inference results only in the regimes of large sample sizes and small coupling variability. This method produces bad results in the limit of small sample sizes or large coupling variability.   \n",
+    "In this section, we show the performance of the Naive Mean-Field approximation (nMF) to infer couplings $W_{ij}$ from configurations `s`. We will see that nMF gives good inference results only in the regimes of large sample sizes and small coupling variability but results in the limit of small sample sizes or large coupling variability are inaccurate.   \n",
     "\n",
     "To start using our jupyter notebook, we first import the nescessary packages."
    ]
@@ -61,7 +61,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "Now, we apply nMF method to recover the coupling matrix `w` from variable configurations `s`."
+    "Now, we apply the nMF method to recover the coupling matrix `w` from variable configurations `s`."
    ]
   },
   {
@@ -86,7 +86,6 @@
    "cell_type": "code",
    "execution_count": 4,
    "metadata": {
-    "collapsed": false,
     "scrolled": true
    },
    "outputs": [
@@ -141,9 +140,7 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "metadata": {
-    "collapsed": false
-   },
+   "metadata": {},
    "outputs": [
     {
      "name": "stdout",
@@ -164,9 +161,9 @@
    "source": [
     "The inference performance is very poor.\n",
     "\n",
-    "## Small coupling variability ($g = 2$) and large sample size ($L=10^5$)\n",
+    "## Small coupling variability $(g = 2)$ and large sample size $(L=10^5)$\n",
     "\n",
-    "Now, if we use a much larger sample size, $L=10^5$ for instance."
+    "Now, if we use a much larger sample size, $L=10^5$ for instance:"
    ]
   },
   {
@@ -192,9 +189,7 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "metadata": {
-    "collapsed": false
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -240,9 +235,7 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "metadata": {
-    "collapsed": false
-   },
+   "metadata": {},
    "outputs": [
     {
      "name": "stdout",
@@ -263,9 +256,9 @@
    "source": [
     "The result shows that nMF produces bad prediction results in the limit of large coupling variability, even for large sample sizes.\n",
     "\n",
-    "## Very small coupling variability $(g=0.5)$ and small sample size $(L=2 \\times 10^3 )$\n",
+    "## Very small coupling variability $(g=0.5)$ and small sample size $(L=2 \\times 10^3)$\n",
     "\n",
-    "Now, let us consider a very small coupling variability, $g = 0.5$ for instance."
+    "Now, let us consider very small coupling variability, $g = 0.5$ for instance."
    ]
   },
   {
@@ -284,7 +277,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "Data length $L=2000$ is used for our first example."
+    "We use data length $L=2000$ for our first example."
    ]
   },
   {
@@ -303,9 +296,7 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "metadata": {
-    "collapsed": false
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -352,7 +343,6 @@
    "cell_type": "code",
    "execution_count": 12,
    "metadata": {
-    "collapsed": false,
     "scrolled": true
    },
    "outputs": [
@@ -375,7 +365,7 @@
    "source": [
     "## Very small coupling variability $(g=0.5)$ and large sample size $(L=10^5)$\n",
     "\n",
-    "Now, let us see wherether the inference result can be improved with a larger data length, $L=10^5$ for instance."
+    "Now, let us see whether the nMF inference result can be improved with a larger data length, $L=10^5$ for instance."
    ]
   },
   {
@@ -394,9 +384,7 @@
   {
    "cell_type": "code",
    "execution_count": 14,
-   "metadata": {
-    "collapsed": false
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -442,9 +430,7 @@
   {
    "cell_type": "code",
    "execution_count": 15,
-   "metadata": {
-    "collapsed": false
-   },
+   "metadata": {},
    "outputs": [
     {
      "name": "stdout",
@@ -483,7 +469,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython2",
-   "version": "2.7.13"
+   "version": "2.7.15"
   }
  },
  "nbformat": 4,

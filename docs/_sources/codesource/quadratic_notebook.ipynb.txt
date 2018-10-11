@@ -9,18 +9,18 @@
     "[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/danhtaihoang/network-inference/master?filepath=sphinx%2Fcodesource%2Fquadratic_notebook.ipynb)\n",
     "\n",
     "\n",
-    "When the interactions between variables contains not only linear term but also\n",
-    "non-linear term, quadratic for instance, the local field can be demonstrated as\n",
+    "When the interactions between variables contains not only linear terms but also\n",
+    "non-linear terms, quadratic for instance, the local field can be written as\n",
     "$$H_i(t) = \\sum_j W_{ij} \\sigma_j (t) + \\frac{1}{2} \\sum_{j,k} Q_{ijk} \\sigma_{j}(t) \\sigma_{k}(t)$$\n",
     "\n",
-    "The algorithm for inferring couplings $W_{ij}$ and $Q_{ijk}$ is similar to the algorithm for inferring only $W_{ij}$ that are described in Method section. The update values of couplings are computed as\n",
+    "The algorithm for inferring couplings $W_{ij}$ and $Q_{ijk}$ is similar to the algorithm for inferring only $W_{ij}$ as described in the Method section. The updated values of couplings are computed as\n",
     "$$Q_{ijk} = \\sum_{\\mu, \\nu} \\langle \\delta E_i \\delta \\sigma_{\\mu} \\sigma_{\\nu} \\rangle[C^{-1}]_{j\\mu}[C^{-1}]_{k\\nu}\n",
     "- \\sum_{l} \\sum_{\\lambda, \\mu, \\nu} \\langle \\delta E_i \\delta \\sigma_l \\rangle \\langle \\delta \\sigma_\\lambda \\delta \\sigma_\\mu \\sigma_\\nu \\rangle [C^{-1}]_{j\\lambda} [C^{-1}]_{k\\mu} [C^{-1}]_{l\\nu}$$\n",
     "\n",
     "and\n",
     "$$W_{ij} = \\sum_{k} \\lbrace \\langle \\delta E_i \\delta \\sigma_k \\rangle [C^{-1}]_{kj} - Q_{ijk}\\langle \\sigma_k \\rangle \\rbrace$$\n",
     "\n",
-    "In the following, we will demontrade the performance of our method in inferring the linear couplings $W_{ij}$ and quadratic couplings $Q_{ijk}$ from configurations of variables $\\vec \\sigma$.\n",
+    "In the following, we will demonstrate the performance of our method in inferring the linear couplings $W_{ij}$ and quadratic couplings $Q_{ijk}$ from configurations of variables $\\vec \\sigma$.\n",
     "\n",
     "As usual, we start by importing the nesscesary packages into the jupyter notebook."
    ]
@@ -67,7 +67,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "From the parameters, we will generate linear couplings $w_{ij}$ and quadratic couplings $q_{ijk}$. Those are actual couplings."
+    "From the parameters, we generate linear couplings $w_{ij}$ and quadratic couplings $q_{ijk}$. These are the couplings that our inference algorithms has to reproduce."
    ]
   },
   {
@@ -86,7 +86,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "Now, from this couplings, we will generate configurations of variables `s` according to the kinetic ising model."
+    "Now, from these couplings, we will generate configurations of variables `s` according to the kinetic Ising model."
    ]
   },
   {
@@ -123,14 +123,13 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "We plot the inferred couplings as function of actual couplings. "
+    "We plot the inferred couplings as function of the actual couplings. "
    ]
   },
   {
    "cell_type": "code",
    "execution_count": 6,
    "metadata": {
-    "collapsed": false,
     "scrolled": true
    },
    "outputs": [
@@ -187,7 +186,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython2",
-   "version": "2.7.13"
+   "version": "2.7.15"
   }
  },
  "nbformat": 4,

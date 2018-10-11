@@ -105,11 +105,11 @@
             
   <div class="section" id="model">
 <h1>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h1>
-<p>To demonstrate the interdependence between variables in stochastic
+<p>To demonstrate the interdependence between configurations of variables in dynamic stochastic
 systems, we use a kinetic model in which the state of variable <span class="math notranslate nohighlight">\(i\)</span>
 at the time point <span class="math notranslate nohighlight">\(t+1\)</span>, <span class="math notranslate nohighlight">\(\sigma_i(t+1)\)</span> <span class="math notranslate nohighlight">\((i = 1,N)\)</span>,
-depends on the state of itself and other variables at the previous time
-point <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(\vec{\sigma}(t)\)</span>, as the following conditional
+depends on the state of all the variables at the previous time
+point <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(\vec{\sigma}(t)\)</span>, in the form of the following conditional
 probability</p>
 <div class="math notranslate nohighlight">
 \[P[\sigma_i(t+1)|\vec{\sigma}(t)] = \frac{\exp [ \sigma_i(t+1) H_i(t)]}{\mathcal{N}}\]</div>
@@ -117,8 +117,8 @@ probability</p>
 field, and
 <span class="math notranslate nohighlight">\(\mathcal{N} = \sum_{\sigma_i(t+1)} \exp[\sigma_i(t+1) H_i(t)]\)</span>
 normalizing factor. Intuitively, the state <span class="math notranslate nohighlight">\(\sigma_i(t+1)\)</span> tends
-to the same direction with local field <span class="math notranslate nohighlight">\(H_i(t)\)</span>.</p>
-<p>In the inverse problem, we infer the coupling strength between variables <span class="math notranslate nohighlight">\(W_{ij}\)</span> from time series of variable states <span class="math notranslate nohighlight">\(\vec{\sigma}\)</span>.</p>
+to align with the local field <span class="math notranslate nohighlight">\(H_i(t)\)</span>.</p>
+<p>In the inverse problem, we infer the coupling strength between variables <span class="math notranslate nohighlight">\(W_{ij}\)</span> from time series data of variable configurations <span class="math notranslate nohighlight">\(\vec{\sigma}\)</span>.</p>
 </div>
 
 

@@ -12,22 +12,22 @@ output: interaction w, local field h0
 """
 def fem(s):
     l,n = np.shape(s)
-    m = np.mean(s,axis=0)
-    ds = s - m
-    st1 = s[1:]
+    m = np.mean(s[:-1],axis=0)
+    ds = s[:-1] - m
     l1 = l-1
 
     c = np.cov(ds,rowvar=False,bias=True)
     c_inv = linalg.inv(c)
-    dst = ds[:-1].T
-    H = st1
+    dst = ds.T
+
     W = np.empty((n,n)) #; H0 = np.empty(n)
     
     nloop = 10000
 
     for i0 in range(n):
-        s1=st1[:,i0]
-        h = H[:,i0] ; cost = np.full(nloop,100.)
+        s1 = s[1:,i0]
+        h = s1
+        cost = np.full(nloop,100.)
         for iloop in range(nloop):
             h_av = np.mean(h)
             hs_av = np.dot(dst,h-h_av)/l1
@@ -47,6 +47,7 @@ def fem(s):
         W[i0,:] = w[:]
         #H0[i0] = h0
     return W #,H0 
+
 
 """---------------------------------------------------------------------------------------
 Inferring interaction by Maximum Likelihood Estimation (MLE)

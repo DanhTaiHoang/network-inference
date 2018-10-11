@@ -274,10 +274,10 @@ div.nboutput div.output_area.stderr {
 <div class="section" id="Exact-mean-field-approximation">
 <h1>Exact mean field approximation<a class="headerlink" href="#Exact-mean-field-approximation" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/danhtaihoang/network-inference/master?filepath=sphinx%2Fcodesource%2Femf.ipynb"><img alt="Binder" src="https://mybinder.org/badge.svg" /></a></p>
-<p>Exact mean field (eMF) is another mean field approximate, besides nMF
-and TAP. We show in the following that we can improve the performance of
-this method by adding our stopping criterion. In general, eMF
-outperforms nMF and TAP, but it is still worse than FEM and MLE,
+<p>Exact mean field (eMF) is another mean field approximation, similar to
+nMF and TAP. We show in the following that we can improve the
+performance of this method by adding our stopping criterion. In general,
+eMF outperforms nMF and TAP, but it is still worse than FEM and MLE,
 especially in the limit of small sample sizes and large coupling
 variability.</p>
 <div class="nbinput nblast docutils container">
@@ -299,8 +299,8 @@ variability.</p>
 </div>
 <div class="section" id="Small-coupling-variability--and-small-sample-size-">
 <h2>Small coupling variability <span class="math notranslate nohighlight">\((g = 2)\)</span> and small sample size <span class="math notranslate nohighlight">\((L = 2 \times 10^3)\)</span><a class="headerlink" href="#Small-coupling-variability--and-small-sample-size-" title="Permalink to this headline">¶</a></h2>
-<p>As other methods, we first use the same parameter setting:
-<span class="math notranslate nohighlight">\(N = 100\)</span>, <span class="math notranslate nohighlight">\(g = 2.0\)</span>, and <span class="math notranslate nohighlight">\(L=2000\)</span>.</p>
+<p>As with comparisons with other methods, we first use the same parameter
+setting: <span class="math notranslate nohighlight">\(N = 100\)</span>, <span class="math notranslate nohighlight">\(g = 2.0\)</span>, and <span class="math notranslate nohighlight">\(L=2000\)</span>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [2]:
@@ -308,8 +308,8 @@ variability.</p>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># parameter setting:</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>    <span class="c1"># number of variables</span>
-<span class="n">g</span> <span class="o">=</span> <span class="mf">2.0</span>    <span class="c1"># coupling variance</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">2.0</span>
 <span class="n">w0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">g</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -325,9 +325,9 @@ variability.</p>
 </pre></div>
 </div>
 </div>
-<p>Unlike nMF and TAP, eMF is an iterative method, we first apply this
-method as discribed in the literature, without stopping criterion. As we
-expected, it will be over fitting in the limit of small sample sizes.</p>
+<p>Unlike nMF and TAP, eMF is an iterative method. We first apply this
+method as described in the literature, without a stopping criterion. As
+expected, it overfits in the limit of small sample sizes.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [4]:
@@ -400,10 +400,10 @@ expected, it will be over fitting in the limit of small sample sizes.</p>
 (&#39;MSE:&#39;, 94.26756796949678)
 </pre></div></div>
 </div>
-<p>Now, we apply our stopping criterion for this method. According to this
+<p>Now, we apply our stopping criterion with eMF. According to this
 criterion, we stop the iteration when the discrepancy starts to
-increase. This option is selected by setting <code class="docutils literal notranslate"><span class="pre">top_criterion='yes'</span></code>. We
-will see that the performance is significantly improved.</p>
+increase. This option is selected by setting <code class="docutils literal notranslate"><span class="pre">stop_criterion='yes'</span></code>.
+We will see that the eMF performance is significantly improved.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [7]:
@@ -480,7 +480,7 @@ will see that the performance is significantly improved.</p>
 </div>
 <div class="section" id="Small-coupling-variability--and-large-sample-size-">
 <h2>Small coupling variability <span class="math notranslate nohighlight">\((g = 2)\)</span> and large sample size <span class="math notranslate nohighlight">\((L = 10^5)\)</span><a class="headerlink" href="#Small-coupling-variability--and-large-sample-size-" title="Permalink to this headline">¶</a></h2>
-<p>Now, let consider large sample size regime, <span class="math notranslate nohighlight">\(L = 100000\)</span> for
+<p>Now, let consider the large sample size regime, <span class="math notranslate nohighlight">\(L = 100000\)</span> for
 instance.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
@@ -567,11 +567,11 @@ instance.</p>
 </pre></div></div>
 </div>
 <p>From the above result, we conclude that eMF works better than eMF and
-TAP but it is worse than FEM and MLE.</p>
+TAP but not as well as FEM and MLE.</p>
 </div>
 <div class="section" id="Very-small-coupling-variability--and-small-sample-size-">
 <h2>Very small coupling variability <span class="math notranslate nohighlight">\((g = 0.5)\)</span> and small sample size <span class="math notranslate nohighlight">\((L = 2 \times 10^3)\)</span><a class="headerlink" href="#Very-small-coupling-variability--and-small-sample-size-" title="Permalink to this headline">¶</a></h2>
-<p>Now, let consider a regime of very small coupling variability,
+<p>Now, let us consider a regime of very small coupling variability,
 <span class="math notranslate nohighlight">\(g = 0.5\)</span>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
@@ -584,8 +584,7 @@ TAP but it is worse than FEM and MLE.</p>
 </pre></div>
 </div>
 </div>
-<p>Data length <span class="math notranslate nohighlight">\(L = 2000\)</span> is used for the first try in this regime.</p>
-<div class="nbinput nblast docutils container">
+We use a data length $L = 2000$ for the first example in this regime.<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [15]:
 </pre></div>
@@ -671,7 +670,7 @@ TAP but it is worse than FEM and MLE.</p>
 </div>
 <div class="section" id="Very-small-coupling-variability--and-large-sample-size-">
 <h2>Very small coupling variability <span class="math notranslate nohighlight">\((g = 0.5)\)</span> and large sample size <span class="math notranslate nohighlight">\((L = 10^5)\)</span><a class="headerlink" href="#Very-small-coupling-variability--and-large-sample-size-" title="Permalink to this headline">¶</a></h2>
-<p>With a very larger sample sizes, <span class="math notranslate nohighlight">\(L = 100000\)</span></p>
+<p>Consider now a much larger sample size, <span class="math notranslate nohighlight">\(L = 10^5.\)</span></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [19]:
@@ -755,9 +754,9 @@ TAP but it is worse than FEM and MLE.</p>
 (&#39;MSE:&#39;, 0.0003542442179127955)
 </pre></div></div>
 </div>
-<p>Similar to other mean field approximations such as nMF and TAP, eMF
-works well only in the limit of large sample sizes and very small
-coupling variability.</p>
+<p>As with other mean field approximations such as nMF and TAP, eMF works
+well only in the limit of large sample sizes and very small coupling
+variability.</p>
 </div>
 </div>
 

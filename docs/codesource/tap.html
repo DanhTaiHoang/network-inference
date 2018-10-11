@@ -276,11 +276,11 @@ div.nboutput div.output_area.stderr {
 <p><a class="reference external" href="https://mybinder.org/v2/gh/danhtaihoang/network-inference/master?filepath=sphinx%2Fcodesource%2Ftap.ipynb"><img alt="Binder" src="https://mybinder.org/badge.svg" /></a></p>
 <p>We show in the following the performance of Thouless-Anderson-Palmer
 mean field approximation (TAP) in inferring couplings between variables
-from their configurations. Similar to nMF, TAP works well only in the
+from observed configurations. Similar to nMF, TAP works well only in the
 regime of large sample sizes and small coupling variability. However,
 this method leads to poor inference results in the regime of small
 sample sizes and/or large coupling variability.</p>
-<p>Similary, we import the packages to the jupyter notebook:</p>
+<p>As before, we import the packages to the jupyter notebook:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [1]:
@@ -300,7 +300,7 @@ sample sizes and/or large coupling variability.</p>
 </div>
 <div class="section" id="Small-coupling-variability--and-small-sample-size-">
 <h2>Small coupling variability <span class="math notranslate nohighlight">\((g = 2)\)</span> and small sample size <span class="math notranslate nohighlight">\((L = 2 \times 10^3)\)</span><a class="headerlink" href="#Small-coupling-variability--and-small-sample-size-" title="Permalink to this headline">¶</a></h2>
-<p>As other methods, we first use the same parameter setting:
+<p>As with the other methods, we first use the same parameter setting:
 <span class="math notranslate nohighlight">\(N = 100\)</span>, <span class="math notranslate nohighlight">\(g = 2.0\)</span>, and <span class="math notranslate nohighlight">\(L=2000\)</span>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
@@ -407,8 +407,8 @@ is calculated:</p>
 </div>
 <div class="section" id="Small-coupling-variability--and-large-sample-size-">
 <h2>Small coupling variability <span class="math notranslate nohighlight">\((g = 2)\)</span> and large sample size <span class="math notranslate nohighlight">\((L = 10^5)\)</span><a class="headerlink" href="#Small-coupling-variability--and-large-sample-size-" title="Permalink to this headline">¶</a></h2>
-<p>Now, assumming that we have much larger number of samples,
-<span class="math notranslate nohighlight">\(L=10^5\)</span> for instance.</p>
+<p>Now, assume that we have a much larger number of samples, <span class="math notranslate nohighlight">\(L=10^5\)</span>
+for instance.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [7]:
@@ -493,12 +493,12 @@ is calculated:</p>
 (&#39;MSE:&#39;, 0.008301534465467005)
 </pre></div></div>
 </div>
-<p>The inference performance given by this method is also bad, even for
-large number of samples.</p>
+<p>The inference performance given by this method is still inaccurate, even
+for this larger number of samples.</p>
 </div>
 <div class="section" id="Very-small-coupling-variability--and-small-sample-size-">
 <h2>Very small coupling variability <span class="math notranslate nohighlight">\((g = 0.5)\)</span> and small sample size <span class="math notranslate nohighlight">\((L = 2 \times 10^3)\)</span><a class="headerlink" href="#Very-small-coupling-variability--and-small-sample-size-" title="Permalink to this headline">¶</a></h2>
-<p>Now, let us consider a very small coupling variability, <span class="math notranslate nohighlight">\(g = 0.5\)</span>
+<p>Now, let us consider very small coupling variability, <span class="math notranslate nohighlight">\(g = 0.5\)</span>
 for instance.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
@@ -598,7 +598,7 @@ for instance.</p>
 </div>
 <div class="section" id="Very-small-coupling-variability--and-large-sample-size-">
 <h2>Very small coupling variability <span class="math notranslate nohighlight">\((g = 0.5)\)</span> and large sample size <span class="math notranslate nohighlight">\((L = 10^5)\)</span><a class="headerlink" href="#Very-small-coupling-variability--and-large-sample-size-" title="Permalink to this headline">¶</a></h2>
-<p>For very large number of samples, <span class="math notranslate nohighlight">\(L=10^5\)</span>:</p>
+<p>For a very large number of samples, <span class="math notranslate nohighlight">\(L=10^5\)</span>:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [16]:
