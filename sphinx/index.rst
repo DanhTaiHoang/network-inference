@@ -15,4 +15,4 @@ Table of Contents
    higherorder   
    conclusion
 
-.. include:: ../README.rst
+.. include:: README.rst
