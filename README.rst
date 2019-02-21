@@ -22,7 +22,7 @@ Code Source
 
 Reference
 ----------------------------
-Danh-Tai Hoang, Juyong Song, Vipul Periwal, and Junghyo Jo, "Causality inference in stochastic systems from neurons to currencies: Profiting from small sample size", `Physical Review E, 99, 023311 (2019) <https://arxiv.org/abs/1705.06384>`_.
+Danh-Tai Hoang, Juyong Song, Vipul Periwal, and Junghyo Jo, "Causality inference in stochastic systems from neurons to currencies: Profiting from small sample size", `Physical Review E, 99, 023311 (2019) <https://journals.aps.org/pre/abstract/10.1103/PhysRevE.99.023311>`_.
 
 Highlights
 ----------------------------
